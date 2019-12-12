@@ -1,22 +1,20 @@
 const dotenv = require('dotenv');
-dotenv.config();
-const mongoose = require('mongoose');
 const express = require('express');
+const database = require('./services/database');
+const router = require('./routes');
+const logger = require('./middleware/logger');
+
 const app = express();
 
+dotenv.config();
+app.use(logger);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-mongoose
-  .connect(
-    'mongodb+srv://Dusan:gostus@cluster1-m6jdl.mongodb.net/test?retryWrites=true&w=majority',
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true
-    }
-  )
-  .then(() => {
-    console.log('Mongo db connected');
-  })
-  .catch(err => console.log('Error connecting to database : ', err));
+app.use(router);
 
-app.listen(process.env.PORT, console.log(`Server started on port : ${process.env.PORT}`));
+database.connect();
+
+app.listen(
+  process.env.PORT,
+  console.log(`Server started on port : ${process.env.PORT}`),
+);
