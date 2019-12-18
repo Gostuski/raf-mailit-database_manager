@@ -3,9 +3,7 @@ const moment = require('moment');
 
 const logger = (req, res, next) => {
   console.log(
-    `Requested : ${req.protocol}://${req.get('host')}${
-      req.originalUrl
-    } : ${moment().format()}, req : ${req}`,
+    `Requested : ${req.protocol}://${req.get('host')}${req.originalUrl} : ${moment().format()}`,
   );
   next();
 };

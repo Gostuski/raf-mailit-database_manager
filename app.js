@@ -2,12 +2,12 @@ const dotenv = require('dotenv');
 const express = require('express');
 const database = require('./services/database');
 const router = require('./routes');
-const logger = require('./middleware/logger');
+// const logger = require('./middleware/logger');
 
 const app = express();
 
 dotenv.config();
-app.use(logger);
+// app.use(logger);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(router);

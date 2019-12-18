@@ -5,10 +5,11 @@ const SubscriptionSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  // subscriptions: {
-  //   type: Number,
-  //   required: true,
-  // },
+  subscriptions: {
+    type: Number,
+    required: true,
+    default: 1,
+  },
 });
 const subscription = mongoose.model('subscription', SubscriptionSchema, 'subscriptions');
 
