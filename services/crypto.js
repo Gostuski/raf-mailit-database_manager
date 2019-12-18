@@ -7,6 +7,7 @@ async function storeData(currencyData) {
     const query = { symbol: data.symbol };
     Currency.findOneAndUpdate(query, data, { upsert: true, new: true }).exec();
   });
+  console.log(currencyData);
 }
 
 async function fetchCryptoCurrencyData() {
@@ -80,6 +81,7 @@ async function unsubscribe(req, res) {
       if (err) return;
       if (!doc.subscriptions) {
         Subscription.findOneAndRemove({ symbol: currency }).exec();
+        Currency.findOneAndRemove({ symbol: currency }).exec();
       }
       res.send(doc);
     });
