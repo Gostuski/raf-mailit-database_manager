@@ -12,4 +12,11 @@ router.post('/crypto/subscribe', cryptoService.subscribe);
 
 router.post('/crypto/unsubscribe', cryptoService.unsubscribe);
 
+router.use((req, res, next) => {
+  if (!req.route) {
+    res.send('not found');
+  }
+  next();
+});
+
 module.exports = router;

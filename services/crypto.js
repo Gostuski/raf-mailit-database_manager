@@ -27,11 +27,20 @@ async function fetchCryptoCurrencyData() {
   storeData(currencyData);
 }
 
+
 async function getAllCurrencies(req, res) {
   const response = await axios.get('http://api.coinlayer.com/api/list?access_key=2d80ec7fbaaf5d2a710601c7b1d51853');
-  const currencies = Object.values(response.data.crypto);
 
-  res.send(currencies);
+  if (response.data.success === true) {
+    const currencies = Object.values(response.data.crypto);
+    res.send(currencies);
+    // return currencies;
+  } else {
+    throw new Error(response.data.error);
+  }
+  // const currencies = Object.values(response.data.crypto);
+  // res.send(currencies);
+  // return currencies;
 }
 
 async function getBySymbol(req, res) {
@@ -43,6 +52,7 @@ async function getBySymbol(req, res) {
   Currency.findOne({ symbol }, (err, doc) => {
     if (err) res.send({ message: err });
     else res.send(doc);
+    console.log(doc.price.numberDecimal);
   });
 }
 

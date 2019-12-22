@@ -4,7 +4,7 @@ const cryptoServices = require('./crypto');
 async function startShceduler() {
   const rule = new scheduler.RecurrenceRule();
 
-  rule.second = new scheduler.Range(0, 59, 5);
+  rule.minute = new scheduler.Range(0, 59, 10);
 
   scheduler.scheduleJob(rule, cryptoServices.fetchCryptoCurrencyData);
 }

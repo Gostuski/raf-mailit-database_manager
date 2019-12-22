@@ -22,7 +22,8 @@ const CurrencySchema = new mongoose.Schema({
     required: true,
   },
   price: {
-    type: mongoose.Types.Decimal128,
+    // type: mongoose.Types.Decimal128,
+    type: Number,
     required: true,
   },
 });

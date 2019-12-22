@@ -1,6 +1,6 @@
 const dotenv = require('dotenv');
 const express = require('express');
-const database = require('./services/database');
+const database = require('./models');
 const router = require('./routes');
 const startScheduler = require('./services/scheduler');
 
@@ -9,6 +9,7 @@ const app = express();
 dotenv.config();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
 app.use(router);
 
 database.connect();
