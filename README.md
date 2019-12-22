@@ -1,1 +1,1 @@
-# raf-mailit-db_manager
+# raf-mailit-database_manager
